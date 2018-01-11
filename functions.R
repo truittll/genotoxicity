@@ -1,3 +1,4 @@
+#Creates GFP plots
 gfp=function(matrix,line){
   df=NULL
   for(i in 1:ncol(matrix)){
@@ -20,7 +21,7 @@ gfp=function(matrix,line){
           axis.text=element_text(size=60),axis.title=element_text(size=60,face="bold"),title=element_text(size=50))
   return(plot)
 }
-
+#Creates cumulative barcode count plots
 plot.cumulative.lib=function(List,time,legend,colors){
   numb=length(List)
   plot_data=NULL
@@ -41,6 +42,7 @@ plot.cumulative.lib=function(List,time,legend,colors){
   return(plot_data)
 }
 
+#Creates unique barcode count plots
 plot.unique.lib=function(List,time,legend,colors){
   numb=length(List)
   plot_data=NULL
@@ -63,6 +65,7 @@ plot.unique.lib=function(List,time,legend,colors){
   return(plot_data)
 }
 
+#Creates Gini-Simpson plots
 SI_lib=function(list_of_your_data,library_names,list_time_points,colors){
   nlib=length(list_of_your_data);ready_data=NULL;tempc=NULL;library_names=c(library_names,"All")
   for(i in 1:(nlib)){
@@ -98,6 +101,7 @@ SI_lib=function(list_of_your_data,library_names,list_time_points,colors){
   return(plot)
 }
 
+#Creates Shannon Index plots
 SH_lib=function(list_of_your_data,library_names,list_time_points,colors){
   nlib=length(list_of_your_data);ready_data=NULL;tempc=NULL;library_names=c(library_names,"All")
   
@@ -136,8 +140,9 @@ SH_lib=function(list_of_your_data,library_names,list_time_points,colors){
   return(plot)
 }
 
+
+#Finds n_clones top clones using the last time point 
 find_top_clones=function(your_data,columns,n_clones){
-  #uses last time point
   your_data=your_data[,columns]
   last=ncol(your_data)
   last_time_point_data=your_data[,last]
@@ -156,6 +161,7 @@ find_top_clones=function(your_data,columns,n_clones){
   return(list_of_combinded_files)
 }
 
+#Makes data frame for stacked area plots
 make_data=function(list_of_combined_files,time_points,n_clones,addition=NULL){
   titles=vector(length=n_clones+1);titles[]=c(0,seq(1,n_clones))
   for(i in 1:n_clones){
@@ -176,6 +182,7 @@ make_data=function(list_of_combined_files,time_points,n_clones,addition=NULL){
   return(your_ready_data)
 }
 
+#Makes stacked area plot from data frame of top clones
 combined_stacked=function(list_of_your_data,columns,time_points,n_clones,plot_title=NULL,colors,n,title){
   nlib=length(list_of_your_data)
   ntime_points=length(time_points)

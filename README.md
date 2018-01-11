@@ -1,6 +1,6 @@
 # genotoxicity
 
-This repository is set up for "Barcoding of macaque hematopoietic stem and progenitor cells: a robust platform to assess vector genotoxicity" by Idalia et al.
+This repository is set up for "Barcoding of macaque hematopoietic stem and progenitor cells: a robust platform to assess vector genotoxicity".
 
 Txt files are provided for both monkeys.
 

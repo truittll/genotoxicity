@@ -1,7 +1,11 @@
-library(barcodetrackR)
-library(ggplot2)
-library(diverse)
-library(gridExtra)
+require(devtools)
+
+#devtools::install_github("d93espinoza/barcodetrackR")
+
+require(barcodetrackR)
+require(ggplot2)
+require(diverse)
+require(gridExtra)
 
 setwd("~/Downloads/genotoxicity-master")
 source("functions.R")

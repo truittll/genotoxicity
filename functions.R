@@ -1,3 +1,8 @@
+
+read.combined=function(filename){
+  return(read.csv(filename,header=TRUE,sep='\t',row.names=1))
+}
+
 gfp=function(matrix,line){
   df=NULL
   for(i in 1:ncol(matrix)){

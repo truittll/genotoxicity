@@ -3,6 +3,9 @@ library(ggplot2)
 library(diverse)
 library(gridExtra)
 
+threshold=2000
+#sets barcode count threshold
+
 ###############################################################################################################
 ###LOADS ENVRIORNMENT##########################################################################################
 ###############################################################################################################
@@ -69,16 +72,16 @@ zj41_time_points_b= c(1,2,3,4,5,6,9,11,12,18,29)
 
 ###############################################################################################################
 ###APPLIES THRESHOLD###########################################################################################
-###uses default 2000 threshold#################################################################################
+### default 2000 threshold####################################################################################
 ###############################################################################################################
 
-zj48_lib7=barcodetrackR::threshold(zj48_lib7)
-zj48_lib8=barcodetrackR::threshold(zj48_lib8)
-zj48_lib11=barcodetrackR::threshold(zj48_lib11)
+zj48_lib7=barcodetrackR::threshold(zj48_lib7,threshold/4000000)
+zj48_lib8=barcodetrackR::threshold(zj48_lib8,threshold/4000000)
+zj48_lib11=barcodetrackR::threshold(zj48_lib11,threshold/4000000)
 
-zj41_lib7=barcodetrackR::threshold(zj41_lib7)
-zj41_lib8=barcodetrackR::threshold(zj41_lib8)
-zj41_lib11=barcodetrackR::threshold(zj41_lib11)
+zj41_lib7=barcodetrackR::threshold(zj41_lib7,threshold/4000000)
+zj41_lib8=barcodetrackR::threshold(zj41_lib8,threshold/4000000)
+zj41_lib11=barcodetrackR::threshold(zj41_lib11,threshold/4000000)
 
 ###############################################################################################################
 ###FIGURE 2B##################################################################################################

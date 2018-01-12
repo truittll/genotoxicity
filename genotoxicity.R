@@ -3,6 +3,9 @@ library(ggplot2)
 library(diverse)
 library(gridExtra)
 
+setwd("~/Downloads/genotoxicity-master")
+source("functions.R")
+
 threshold=2000
 #sets barcode count threshold
 

@@ -1,4 +1,3 @@
-#Creates GFP plots
 gfp=function(matrix,line){
   df=NULL
   for(i in 1:ncol(matrix)){
@@ -21,7 +20,7 @@ gfp=function(matrix,line){
           axis.text=element_text(size=60),axis.title=element_text(size=60,face="bold"),title=element_text(size=50))
   return(plot)
 }
-#Creates cumulative barcode count plots
+
 plot.cumulative.lib=function(List,time,legend,colors){
   numb=length(List)
   plot_data=NULL
@@ -42,7 +41,6 @@ plot.cumulative.lib=function(List,time,legend,colors){
   return(plot_data)
 }
 
-#Creates unique barcode count plots
 plot.unique.lib=function(List,time,legend,colors){
   numb=length(List)
   plot_data=NULL
@@ -65,7 +63,6 @@ plot.unique.lib=function(List,time,legend,colors){
   return(plot_data)
 }
 
-#Creates Gini-Simpson plots
 SI_lib=function(list_of_your_data,library_names,list_time_points,colors){
   nlib=length(list_of_your_data);ready_data=NULL;tempc=NULL;library_names=c(library_names,"All")
   for(i in 1:(nlib)){
@@ -101,7 +98,6 @@ SI_lib=function(list_of_your_data,library_names,list_time_points,colors){
   return(plot)
 }
 
-#Creates Shannon Index plots
 SH_lib=function(list_of_your_data,library_names,list_time_points,colors){
   nlib=length(list_of_your_data);ready_data=NULL;tempc=NULL;library_names=c(library_names,"All")
   
@@ -140,9 +136,8 @@ SH_lib=function(list_of_your_data,library_names,list_time_points,colors){
   return(plot)
 }
 
-
-#Finds n_clones top clones using the last time point 
 find_top_clones=function(your_data,columns,n_clones){
+  #uses last time point
   your_data=your_data[,columns]
   last=ncol(your_data)
   last_time_point_data=your_data[,last]
@@ -161,7 +156,6 @@ find_top_clones=function(your_data,columns,n_clones){
   return(list_of_combinded_files)
 }
 
-#Makes data frame for stacked area plots
 make_data=function(list_of_combined_files,time_points,n_clones,addition=NULL){
   titles=vector(length=n_clones+1);titles[]=c(0,seq(1,n_clones))
   for(i in 1:n_clones){
@@ -182,7 +176,6 @@ make_data=function(list_of_combined_files,time_points,n_clones,addition=NULL){
   return(your_ready_data)
 }
 
-#Makes stacked area plot from data frame of top clones
 combined_stacked=function(list_of_your_data,columns,time_points,n_clones,plot_title=NULL,colors,n,title){
   nlib=length(list_of_your_data)
   ntime_points=length(time_points)
@@ -234,4 +227,29 @@ combined_stacked=function(list_of_your_data,columns,time_points,n_clones,plot_ti
   
   return(print) #to see actual numbers
   #return(plot) #makes plot
+}
+
+diversity_plot.k <- function(x, a_s = 0.001, b_s = 3000, your_title = ""){
+  x <- cbind(x[,1], 1 - x[,2])
+  x_model <- nls(x[,2] ~ 1/(1 + exp(-a * (x[,1] - b))), start = list(a = a_s, b = b_s))
+  i <- order(x[,1])
+  par(cex.main = 1.5)
+  plot(x, xlab = "Cells", ylab = "Null hypothesis P value for single cell representation of barcodes",  cex.axis = 2, pch = 19)
+  lines(x[,1][i], predict(x_model)[i], lwd  = 5, col = 'red')
+  title(paste0('\n', your_title, '\n'))
+  legend('topleft', 
+         legend = substitute(y == over(1,{1+e^{-a*(x - b)}}),list(a = round(coef(x_model)[1], 3), b = round(coef(x_model)[2], 3))),
+         bty = 'n', cex = 1.5)
+  solution_ <- (log(1/.05 - 1)/(-coef(x_model)[1]) + coef(x_model)[2])
+  legend(x = mean(c(solution_, max(x[,1]))) - 500, y = 0.6,
+         legend = paste0("p < 0.05 if \n<", ceiling(solution_), " barcodes"),
+         bty = 'n', cex = 1.5, text.col = 'red')
+  abline(v = solution_, col = 'red', lwd = 4, lty = 2)
+}
+
+create_divplot.k=function(filename,plottitle,read.plottitle,date){
+  temp = read.csv(filename,header=FALSE, sep =',')[-1,2:3]
+  jpeg(file = paste(date,read.plottitle,"diversity.jpg",sep = "_"), width = 3000, height = 3000, units = "px", res = 300)
+  diversity_plot.k(temp, your_title = plottitle)
+  dev.off()
 }

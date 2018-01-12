@@ -682,6 +682,8 @@ dev.off()
 ###Monte Carlo#################################################################################################
 ###############################################################################################################
 
+#https://github.com/truittll/barcode_extracter/blob/master/monte_carlo.py
+
 create_divplot.k("MC1.txt","","lib7_K","MC")
 create_divplot.k("MC2.txt","","lib8_K","MC")
 create_divplot.k("MC3.txt","","lib11_K","MC")

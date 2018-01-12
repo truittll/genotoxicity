@@ -2,7 +2,6 @@ library(barcodetrackR)
 library(ggplot2)
 library(diverse)
 library(gridExtra)
-library(diverse)
 
 threshold=2000
 #sets barcode count threshold

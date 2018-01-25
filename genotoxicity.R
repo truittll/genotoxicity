@@ -265,37 +265,41 @@ dev.off()
 ###FIGURE 3B##################################################################################################
 ###Unique Barcode Number#######################################################################################
 ###############################################################################################################
-
+ 
 grans48=c("pp_50trim_zj48_1_month_Grans_index15_IY12.fastq","pp_50trim_zj48_2_month_Grans_index16_IY12.fastq",
           "pp_50trim_zj48_3_month_Grans_index17_IY12.fastq","pp_50trim_zj48_4_month_Grans_442p8ng__index18_IY12.fastq",
           "pp_50trim_ZJ48_5m_Grans_IY_R15_IY24.fastq","pp_50trim_zj48_6_month_Grans_index20_IY12.fastq",
-          "pp_50trim_ZJ48_7m_Grans_IY_R17_IY24.fastq","pp_50trim_ZJ48_11m_Grans_IY_R22_IY24.fastq",
-          "pp_50trim_ZJ48_12m_Grans_IY_R24_IY24.fastq","pp_50trim_ZJ48_16m_Grans_2_IY28_R20.fastq",
+          "pp_50trim_ZJ48_7m_Grans_IY_R17_IY24.fastq",
+          "pp_50trim_ZJ48_12m_Grans_IY_R24_IY24.fastq",
           "ZJ48_Grans_24m_sampled_LT2821_LT3_i524_S19_L001_R1_001.fastq")
 
 B48=c("pp_50trim_zj48_1_month_B_cells_index21_IY12.fastq","pp_50trim_zj48_2_month_B_cells_index22_IY12.fastq",
       "pp_50trim_zj48_3_month_B_cells_index23_IY12.fastq", "pp_50trim_zj48_4_month_B_cells_index24_IY12.fastq",
       "pp_50trim_zj48_5_month_B_cells_index25_IY12.fastq","pp_50trim_zj48_6_month_B_cells_index26_IY12.fastq",
-      "pp_50trim_ZJ48_7m_B_cells__IY_R21_IY23.fastq","pp_50trim_ZJ48_9m_B_cells__IY_R25_IY23.fastq",
+      "pp_50trim_ZJ48_7m_B_cells__IY_R21_IY23.fastq",
       "pp_50trim_ZJ48_12m_B_cells__IY_R27_IY23.fastq","ZJ48_Grans_24m_sampled_LT2821_LT3_i524_S19_L001_R1_001.fastq")
 
 t48=c("pp_50trim_zj48_1_month_T_cells_index15_IY13.fastq","pp_50trim_zj48_2_month_T_cells_index_16_IY13.fastq",
       "pp_50trim_zj48_3_month_T_cells_index17_IY13.fastq","pp_50trim_zj48_4_month_T_cells_index18_IY13.fastq",
       "pp_50trim_zj48_5_month_T_cells_index19_IY13.fastq","pp_50trim_zj48_6_month_T_cells_index20_IY13.fastq",
-      "pp_50trim_ZJ48_7m_T_cells__IY_R14_IY23.fastq","pp_50trim_ZJ48_9m_T_cells__IY_R15_IY23.fastq",
+      "pp_50trim_ZJ48_7m_T_cells__IY_R14_IY23.fastq",
       "pp_50trim_ZJ48_12m_T_cells__IY_R17_IY23.fastq","ZJ48_T_24m_sampled_LT2821_LT3_i528_S22_L001_R1_001.fastq")
 
 
 
-zj48_time_points_g = c(1,2,3,4,5,6,7,11,12,16,24)
-zj48_time_points_t= c(1,2,3,4,5,6,7,9,12,24)
-zj48_time_points_b= c(1,2,3,4,5,6,7,9,12,24)
+zj48_time_points_g = c(1,2,3,4,5,6,7,12,24)
+zj48_time_points_t= c(1,2,3,4,5,6,7,12,24)
+zj48_time_points_b= c(1,2,3,4,5,6,7,12,24)
 
 
-grans41=c("zj41_1m_Gr_pp_50trim_IY21_R15.fastq","zj41_2m_Gr_293ng_pp_50trim_IY21_R16.fastq","zj41_3m_Gr_pp_50trim_IY21_R17.fastq",
-          "zj41_4m_Gr_pp_50trim_IY21_R18.fastq","pp_50trim_ZJ41_5m_Grans_Ann__IY25_R14.fastq","zj41_6m_Gr_pp_50trim_IY21_R20.fastq",
-          "zj41_9m_Gr_pp_50trim_IY21_R21.fastq","zj41_9m_Gr_pp_50trim_IY21_R21.fastq","pp_50trim_ZJ41_13m_Grans_1___IY27_R19.fastq",
-          "pp_50trim_ZJ41_16m_Grans__IY25_R22.fastq","pp_50trim_ZJ41_18m_Grans__IY25_R25.fastq","pp_50trim_ZJ41_21m_Grans__IY25_R26.fastq",
+grans41=c("zj41_1m_Gr_pp_50trim_IY21_R15.fastq",
+          "zj41_2m_Gr_293ng_pp_50trim_IY21_R16.fastq",
+          "zj41_3m_Gr_pp_50trim_IY21_R17.fastq",
+          "zj41_4m_Gr_pp_50trim_IY21_R18.fastq",
+          "pp_50trim_ZJ41_5m_Grans_Ann__IY25_R14.fastq",
+          "zj41_6m_Gr_pp_50trim_IY21_R20.fastq",
+          "zj41_9m_Gr_pp_50trim_IY21_R21.fastq",
+          "pp_50trim_ZJ41_18m_Grans__IY25_R25.fastq",
           "ZJ41_Grans_29m_sampled_LT2821_LT3_i516_S13_L001_R1_001.fastq")
 
 B41=c("zj41_1m_B_pp_50trim_IY15_R23.fastq",
@@ -305,68 +309,71 @@ B41=c("zj41_1m_B_pp_50trim_IY15_R23.fastq",
       "zj41_5m_B_pp_50trim_IY15_R27.fastq",
       "zj41_6m_B_pp_50trim_IY15_R28.fastq",
       "zj41_9m_B_rep_pp_50trim_IY15_R34.fastq",
-      "zj41_11m_B_pp_50trim_IY15_R35.fastq",
-      "pp_50trim_ZJ41_12m_B_IY26_R27.fastq",
       "pp_50trim_ZJ41_18m_B_IY26_R28.fastq",
       "ZJ41_B_29m_sampled_LT2821_LT3_i518_S14_L001_R1_001.fastq")
 
 
 t41=c("zj41_m1_Tcells_IY09R28.fastq","zj41_m2_Tcells_IY07R28.fastq","zj41_3m_T_rep_pp_50trim_IY22_R25.fastq",
       "zj41_4m_T_rep_pp_50trim_IY22_R26.fastq","zj41_5m_T_rep_pp_50trim_IY22_R27.fastq","zj41_6m_T_pp_50trim_IY22_R20.fastq",
-      "pp_50trim_ZJ41_7m_T_IY26_R24.fastq","zj41_9m_T_rep_pp_50trim_IY22_R33.fastq","zj41_11m_T_rep_pp_50trim_IY22_R34.fastq",
+      "zj41_9m_T_rep_pp_50trim_IY22_R33.fastq",
       "pp_50trim_ZJ41_18m_T_IY26_R25.fastq","ZJ41_T_29m_sampled_LT2821_LT3_i521_S16_L001_R1_001.fastq")
 
 
-zj41_time_points_g = c(1,2,3,4,5,6,9,12,13,16,18,21,29)
-zj41_time_points_t= c(1,2,3,4,5,6,7,9,11,18,29)
-zj41_time_points_b= c(1,2,3,4,5,6,9,11,12,18,29)
+zj41_time_points_g = c(1,2,3,4,5,6,9,18,29)
+zj41_time_points_t= c(1,2,3,4,5,6,9,18,29)
+zj41_time_points_b= c(1,2,3,4,5,6,9,18,29)
 
 to_plot=list(zj48_lib7[,grans48],zj48_lib8[,grans48],zj48_lib11[,grans48])
 colors=c("deeppink", "darkgrey","deepskyblue")
 zj48_cumulative_grans=plot.cumulative.lib(to_plot,zj48_time_points_g,c("MSCV","EF1a","SFFV"),colors=c("deeppink", "gray","deepskyblue"))
 zj48_unique_grans=plot.unique.lib(to_plot,zj48_time_points_g,c("MSCV","EF1a","SFFV"),colors)
-
+write.table(zj48_cumulative_grans,file="zj48grans.txt")
 
 to_plot=list(zj48_lib7[,t48],zj48_lib8[,t48],zj48_lib11[,t48])
 zj48_cumulative_t=plot.cumulative.lib(to_plot,zj48_time_points_t,c("MSCV","EF1a","SFFV"),colors)
-
 zj48_unique_t=plot.unique.lib(to_plot,zj48_time_points_t,c("MSCV","EF1a","SFFV"),colors)
+write.table(zj48_cumulative_t,file="zj48t.txt")
 
 to_plot=list(zj48_lib7[,B48],zj48_lib8[,B48],zj48_lib11[,B48])
 zj48_cumulative_b=plot.cumulative.lib(to_plot,zj48_time_points_b,c("MSCV","EF1a","SFFV"),colors)
 zj48_unique_b=plot.unique.lib(to_plot,zj48_time_points_b,c("MSCV","EF1a","SFFV"),colors)
+write.table(zj48_cumulative_b,file="zj48b.txt")
 
 to_plot=list(zj41_lib7[,grans41],zj41_lib8[,grans41],zj41_lib11[,grans41])
 zj41_cumulative_grans=plot.cumulative.lib(to_plot,zj41_time_points_g,c("MSCV","EF1a","SFFV"),colors)
 zj41_unique_grans=plot.unique.lib(to_plot,zj41_time_points_g,c("MSCV","EF1a","SFFV"),colors)
+write.table(zj41_cumulative_grans,file="zj41grans.txt")
 
 to_plot=list(zj41_lib7[,t41],zj41_lib8[,t41],zj41_lib11[,t41])
 zj41_cumulative_t=plot.cumulative.lib(to_plot,zj41_time_points_t,c("MSCV","EF1a","SFFV"),colors)
 zj41_unique_t=plot.unique.lib(to_plot,zj41_time_points_t,c("MSCV","EF1a","SFFV"),colors)
+write.table(zj41_cumulative_t,file="zj41t.txt")
 
 to_plot=list(zj41_lib7[,B41],zj41_lib8[,B41],zj41_lib11[,B41])
 zj41_cumulative_b=plot.cumulative.lib(to_plot,zj41_time_points_b,c("MSCV","EF1a","SFFV"),colors)
 zj41_unique_b=plot.unique.lib(to_plot,zj41_time_points_b,c("MSCV","EF1a","SFFV"),colors)
+write.table(zj41_cumulative_b,file="zj41b.txt")
 
-
-choose=c(1,2,3,4,5,6,9,18,29)
-temp1=NULL;temp2=NULL;temp3=NULL
-for(i in 1:length(choose)){
-  temp1=rbind(temp1,subset(zj41_unique_b,Month==choose[i]))
-  temp2=rbind(temp2,subset(zj41_unique_grans,Month==choose[i]))
-  temp3=rbind(temp3,subset(zj41_unique_t,Month==choose[i]))
+add.cumulative=function(a,b){
+  c=vector(length=nrow(a))
+  u=vector(length=nrow(a))
+  
+  for(i in 1:nrow(a)){
+    if(a$Month[i]==b$Month[i]){
+      c[i]=a$C[i]+b$C[i]
+      u[i]=a$U[i]+b$U[i]
+    }
+  }
+  data=NULL;data$Month=a$Month;data$Library=a$Library;data$C=c;data$U=u
+  return(as.data.frame(data))
 }
 
-C=temp1$C+temp2$C+temp3$C
-U=temp1$U+temp2$U+temp3$U
+plot_data8=add.cumulative(add.cumulative(zj48_cumulative_b,zj48_cumulative_grans),zj48_cumulative_t)
+add.cumulative(zj48_cumulative_b,zj48_cumulative_grans)
 
-cumulative=temp1
-cumulative$C=C
+plot_data1=add.cumulative(add.cumulative(zj41_cumulative_b,zj41_cumulative_grans),zj41_cumulative_t)
 
-unique=temp1
-unique$U=U
-
-plot_data=unique
+plot_data=plot_data1
 pdf(file = "unique_zj41.pdf",width=30,height=20)
 zj41_u=ggplot(plot_data,aes(x=Month,y=U,group=Library,color=Library))+
   geom_line(aes(size=2))+scale_color_manual(values=colors,breaks=c("EF1a","MSCV","SFFV"))+
@@ -383,24 +390,7 @@ zj41_u2=ggplot(plot_data,aes(x=Month,y=U,group=Library,color=Library))+
   theme(legend.text=element_text(size=25),legend.key.size = unit(1.5, "cm"),legend.title=element_text(size=25),axis.text=element_text(size=25),
         axis.title=element_text(size=25,face="bold"),legend.position = "none",plot.title = element_text(size=30))+ggtitle("ZJ48")
 
-choose=c(1,2,3,4,5,6,7,12,24)
-temp1=NULL;temp2=NULL;temp3=NULL
-for(i in 1:length(choose)){
-  temp1=rbind(temp1,subset(zj48_unique_b,Month==choose[i]))
-  temp2=rbind(temp2,subset(zj48_unique_grans,Month==choose[i]))
-  temp3=rbind(temp3,subset(zj48_unique_t,Month==choose[i]))
-}
-
-C=temp1$C+temp2$C+temp3$C
-U=temp1$U+temp2$U+temp3$U
-
-cumulative=temp1
-cumulative$C=C
-
-unique=temp1
-unique$U=U
-
-plot_data=unique
+plot_data=plot_data8
 pdf(file = "unique_zj48.pdf",width=30,height=20)
 zj48_u=ggplot(plot_data,aes(x=Month,y=U,group=Library,color=Library))+
   geom_line(aes(size=2))+scale_color_manual(values=colors,breaks=c("EF1a","MSCV","SFFV"))+
@@ -429,16 +419,7 @@ for(i in 1:length(choose)){
   temp3=rbind(temp3,subset(zj41_unique_t,Month==choose[i]))
 }
 
-C=temp1$C+temp2$C+temp3$C
-U=temp1$U+temp2$U+temp3$U
-
-cumulative=temp1
-cumulative$C=C
-
-unique=temp1
-unique$U=U
-
-plot_data=cumulative
+plot_data=plot_data1
 pdf(file = "cumulative_zj41.pdf",width=30,height=20)
 zj41_c=ggplot(plot_data,aes(x=Month,y=C,group=Library,color=Library))+
   geom_line(aes(size=2))+scale_color_manual(values=colors,breaks=c("EF1a","MSCV","SFFV"))+
@@ -455,6 +436,8 @@ zj41_c2=ggplot(plot_data,aes(x=Month,y=C,group=Library,color=Library))+
   theme(legend.text=element_text(size=25),legend.key.size = unit(1.5, "cm"),legend.title=element_text(size=25),axis.text=element_text(size=60),
         axis.title=element_text(size=60,face="bold"),legend.position="none")+ggtitle("ZJ41")
 
+
+
 choose=c(1,2,3,4,5,6,7,12,24)
 temp1=NULL;temp2=NULL;temp3=NULL
 for(i in 1:length(choose)){
@@ -463,16 +446,7 @@ for(i in 1:length(choose)){
   temp3=rbind(temp3,subset(zj48_unique_t,Month==choose[i]))
 }
 
-C=temp1$C+temp2$C+temp3$C
-U=temp1$U+temp2$U+temp3$U
-
-cumulative=temp1
-cumulative$C=C
-
-unique=temp1
-unique$U=U
-
-plot_data=cumulative
+plot_data=plot_data8
 pdf(file = "cumulative_zj48.pdf",width=30,height=20)
 zj48_c=ggplot(plot_data,aes(x=Month,y=C,group=Library,color=Library))+
   geom_line(aes(size=2))+scale_color_manual(values=colors,breaks=c("EF1a","MSCV","SFFV"))+
@@ -508,8 +482,8 @@ require(gridExtra)
 grid.arrange(zj48_c2,zj41_c2,zj48_u2, zj41_u2, ncol=2)
 dev.off()
 
-plot_data8=plot_data
-plot_data1=plot_data
+
+
 
 
 save(plot_data8,plot_data1,file="cumulative_data.Rdata")
@@ -722,3 +696,4 @@ dev.off()
 pdf(file = "final_shannon.pdf",width=30,height=20)
 grid.arrange(SH_g,SH_b,ncol=2)
 dev.off()
+

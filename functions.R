@@ -18,10 +18,11 @@ gfp=function(matrix,line){
   df=df[(is.na(df$GFP)==FALSE),]
   
   plot=ggplot(df,aes(x=as.numeric(as.vector(Month)),y=GFP,group=Cell_Type))+
-    geom_line(aes(linetype=df$line),size=2)+geom_point()+scale_y_continuous(name="GFP Percent",limits=c(0,8.25))+
-    scale_x_continuous("Month")+
+    geom_line(aes(linetype=df$line),size=4)+
+    scale_y_continuous(name="GFP Percent",limits=c(0,8.25))+
+    scale_x_continuous("Month",limits=c(0,40),breaks=(seq(0,40,by=5)))+
     scale_linetype_manual(name="Cell Type",values=line,labels=colnames(matrix))+
-    theme(legend.text=element_text(size=15),legend.key.size = unit(1, "cm"),legend.title=element_text(size=25),
+    theme(legend.text=element_text(size=20),legend.key.size = unit(3, "in"),legend.title=element_text(size=40),
           axis.text=element_text(size=60),axis.title=element_text(size=60,face="bold"),title=element_text(size=50))
   return(plot)
 }
@@ -39,8 +40,9 @@ plot.cumulative.lib=function(List,time,legend,colors){
     plot_data=rbind.data.frame(plot_data,temp,make.row.names=TRUE)
   }
   plot=ggplot(plot_data,aes(x=Month,y=C,group=Library,color=Library))+
-    geom_line(aes(size=2))+scale_color_manual(values=colors,breaks=legend)+geom_point(aes(size=2.5))+scale_y_continuous(name="Cumulative Barcode",limits=c(0,4600))+
-    scale_x_discrete(limits=seq(0,31))+ theme_bw()+
+    geom_line(size=2)+scale_color_manual(values=colors,breaks=legend)+geom_point(aes(size=2.5))+
+    scale_y_continuous(name="Cumulative Barcode",limits=c(0,6300))+
+    scale_x_discrete(limits=seq(0,38))+ theme_bw()+
     theme(legend.text=element_text(size=15),legend.key.size = unit(1, "cm"),legend.title=element_text(size=25),
           axis.text=element_text(size=60),axis.title=element_text(size=60,face="bold"),title=element_text(size=50))
   return(plot_data)
@@ -61,8 +63,10 @@ plot.unique.lib=function(List,time,legend,colors){
   }
   
   plot=ggplot(plot_data,aes(x=Month,y=U,group=Library,color=Library))+
-    geom_line(aes(size=2))+scale_color_manual(values=colors,breaks=legend)+geom_point(aes(size=2.5))+scale_y_continuous(name="Unique Barcode",limits=c(0,4600))+
-    scale_x_discrete(limits=seq(0,31))+ theme_bw()+
+    geom_line(size=2)+
+    scale_color_manual(values=colors,breaks=legend)+geom_point(aes(size=2.5))+
+    scale_y_continuous(name="Unique Barcode",limits=c(0,6300))+
+    scale_x_discrete(limits=seq(0,38))+ theme_bw()+
     theme(legend.text=element_text(size=15),legend.key.size = unit(1, "cm"),legend.title=element_text(size=25),
           axis.text=element_text(size=60),axis.title=element_text(size=60,face="bold"),title=element_text(size=50))
   return(plot_data)
@@ -95,7 +99,7 @@ SI_lib=function(list_of_your_data,library_names,list_time_points,colors){
   }
   plot=ggplot(plot_data, aes(x=Time, y=SI, group=Library, colour=Library))+
     geom_line(size=2)+
-    scale_color_manual(values=colors)+scale_x_continuous("Month",limits=c(0,31))+
+    scale_color_manual(values=colors)+scale_x_continuous("Month",limits=c(0,40))+
     ylim(0.65,1)+scale_y_continuous("Simpson Index",limits=c(.65,1))+
     theme(legend.text=element_text(size=15),legend.key.size = unit(1, "cm"),legend.title=element_text(size=25),axis.text=element_text(size=60),
           axis.title=element_text(size=60,face="bold"),legend.position="none",title=element_text(size=70))
@@ -134,7 +138,7 @@ SH_lib=function(list_of_your_data,library_names,list_time_points,colors){
   plot=ggplot(plot_data, aes(x=Time, y=Shannon, group=Library, colour=Library))+
     geom_line(size=2)+
     scale_color_manual(values=colors)+
-    ylim(0,7.5)+scale_y_continuous("Shannon Index",limits=c(0,7))+scale_x_continuous("Month",limits=c(0,30))+
+    ylim(0,7.5)+scale_y_continuous("Shannon Index",limits=c(0,7))+scale_x_continuous("Month",limits=c(0,40))+
     theme(legend.text=element_text(size=15),legend.key.size = unit(1, "cm"),legend.title=element_text(size=60),axis.text=element_text(size=60),
           axis.title=element_text(size=60,face="bold"),legend.position="none",title=element_text(size=70))
   
@@ -151,7 +155,7 @@ find_top_clones=function(your_data,columns,n_clones){
   other=vector(length=ncol(your_data));other[]=0
   for(i in 1:nrow(your_data)){
     if(r[i]<=n_clones){
-      list_of_combinded_files[[r[i]+1]]=as.data.frame(your_data[i,])
+      list_of_combinded_files[[n_clones-r[i]+2]]=as.data.frame(your_data[i,])
     }else{
       other=other+your_data[i,]
     }
@@ -161,12 +165,13 @@ find_top_clones=function(your_data,columns,n_clones){
   return(list_of_combinded_files)
 }
 
-make_data=function(list_of_combined_files,time_points,n_clones,addition=NULL){
+make_data=function(list_of_combined_files,time_points,n_clones,addition=NULL,top){
+
   titles=vector(length=n_clones+1);titles[]=c(0,seq(1,n_clones))
   for(i in 1:n_clones){
-    titles[i+1]=paste("Barcode ",toString(titles[i+1]),addition)
+    titles[i+1]=paste(if(top==i){"z"},letters[n_clones-i+1],"Barcode ",toString(titles[i+1]),addition)
   }
-  titles[1]=paste("Other",addition)
+  titles[1]=paste("zzzzzzzzzzzzzzzzzz Other",addition)
   
   ntime_points=length(time_points)
   Libraries=rep(titles,times=ntime_points)
@@ -181,7 +186,7 @@ make_data=function(list_of_combined_files,time_points,n_clones,addition=NULL){
   return(your_ready_data)
 }
 
-combined_stacked=function(list_of_your_data,columns,time_points,n_clones,plot_title=NULL,colors,n,title){
+combined_stacked=function(list_of_your_data,columns,time_points,n_clones,plot_title=NULL,colors,n,title,top){
   nlib=length(list_of_your_data)
   ntime_points=length(time_points)
   combined_ready_data=NULL
@@ -190,7 +195,7 @@ combined_stacked=function(list_of_your_data,columns,time_points,n_clones,plot_ti
     your_data=list_of_your_data[[lib]]
     list_of_combined_files=find_top_clones(your_data,columns,n_clones)
     
-    combined_ready_data[[lib]]=make_data(list_of_combined_files,time_points,n_clones,toString(lib))
+    combined_ready_data[[lib]]=make_data(list_of_combined_files,time_points,n_clones,toString(lib),top)
     
     lib_sum=apply(your_data[columns],2,sum)
     sum[]=sum+lib_sum
@@ -220,9 +225,9 @@ combined_stacked=function(list_of_your_data,columns,time_points,n_clones,plot_ti
   Title=paste("Stacked_",title,"_all.pdf",sep="")
   
   print=ggplot(full, aes(x=full$Months, y=(full$prop)*100, group=full$Libraries)) +
-    geom_area(aes(fill=full$Libraries), position = position_stack(reverse = T))+
+    geom_area(aes(fill=full$Libraries),position=position_stack(reverse=T))+
     scale_fill_manual(values = custom_palette)+
-    theme(legend.position="none")+scale_x_continuous(limits=c(0,31))+
+    theme(legend.position="none")+scale_x_continuous(limits=c(0,40))+
     ggtitle(plot_title)+xlab("Time (months)")+
     geom_line(colour="black", size=.2, alpha=.4,position = position_stack(reverse = T))+
     ylab("Percent Contribution \n of Barcodes")+theme(axis.text=element_text(size=30),
@@ -233,7 +238,6 @@ combined_stacked=function(list_of_your_data,columns,time_points,n_clones,plot_ti
   return(print) #to see actual numbers
   #return(plot) #makes plot
 }
-
 diversity_plot.k <- function(x, a_s = 0.001, b_s = 3000, your_title = ""){
   x <- cbind(x[,1], 1 - x[,2])
   x_model <- nls(x[,2] ~ 1/(1 + exp(-a * (x[,1] - b))), start = list(a = a_s, b = b_s))
@@ -257,4 +261,57 @@ create_divplot.k=function(filename,plottitle,read.plottitle,date){
   jpeg(file = paste(date,read.plottitle,"diversity.jpg",sep = "_"), width = 3000, height = 3000, units = "px", res = 300)
   diversity_plot.k(temp, your_title = plottitle)
   dev.off()
+}
+
+merge.combined=function(x,y){
+  barcodes=unique(c(rownames(x),rownames(y)))
+  new=matrix(data=0,ncol=ncol(x),nrow=length(barcodes));new=as.data.frame(new)
+  rownames(new)=barcodes;colnames(new)=colnames(x)
+  
+  for(i in barcodes){
+    new[i,]=x[i,]+y[i,]
+  }
+  return(new)
+}
+
+log.fold.change=function(one,two,three,time1,time2,time,weighted=FALSE){
+  temp1=log10(one[,time1]/one[,time2])
+  temp2=log10(two[,time1]/two[,time2])
+  temp3=log10(three[,time1]/three[,time2])
+  
+  if(weighted){
+    temp1=log10(one[,time1]/one[,time2])*one[,time1]
+    temp2=log10(two[,time1]/two[,time2])*two[,time1]
+    temp3=log10(three[,time1]/three[,time2])*three[,time1]
+  }
+  
+  temp1=temp1[is.na(temp1)==FALSE]
+  temp1=temp1[temp1!=-Inf]
+  temp1=temp1[temp1!=Inf]
+  #temp1=temp1[temp1!=0]
+  
+  temp2=temp2[is.na(temp2)==FALSE]
+  temp2=temp2[temp2!=-Inf]
+  temp2=temp2[temp2!=Inf]
+  #temp2=temp2[temp2!=0]
+  
+  temp3=temp3[is.na(temp3)==FALSE]
+  temp3=temp3[temp3!=-Inf]
+  temp3=temp3[temp3!=Inf]
+  #temp3=temp3[temp3!=0]
+
+  plot1=qplot(temp1, geom="histogram",main = "Weighted Log Fold Change: MSCV")+geom_vline(xintercept=mean(temp1),color="deeppink")
+  plot2=qplot(temp2, geom="histogram",main = "Weighted Log Fold Change: EF1a")+geom_vline(xintercept=mean(temp2),color="darkgrey")
+  plot3=qplot(temp3, geom="histogram",main = "Weighted Log Fold Change: SFFV")+geom_vline(xintercept=mean(temp3),color="deepskyblue")
+  grid.arrange(ncol=3,plot1,plot2,plot3)
+
+  
+  matrix=matrix(ncol=2,nrow=3)
+  matrix[,1]=c(7,8,11)
+  matrix[,2]=c(wilcox.test(temp1)$p.value,
+               wilcox.test(temp2)$p.value,
+               wilcox.test(temp3)$p.value)
+  
+  return(matrix)
+  
 }
